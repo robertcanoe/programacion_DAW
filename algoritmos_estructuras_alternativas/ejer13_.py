@@ -13,19 +13,30 @@ Autor: Roberto Cano Estévez
 Fecha: 19/10/2024
 """
 
-amount = 434
-bills = [500, 200, 100, 50, 20, 10, 5]
-coins = [2, 1]
-change = {}
+print("Este programa calcula el desglose mínimo en billetes y monedas de una cantidad exacta de euros.")
+print("-----------------------------------------------------------------------------------------------")
 
+amount = 434  # Cantidad en euros
+bills = [500, 200, 100, 50, 20, 10, 5]  # Billetes disponibles
+coins = [2, 1]  # Monedas disponibles
+change = {}  # Diccionario para almacenar el desglose
+
+# Calcular el desglose en billetes
 for bill in bills:
     if amount >= bill:
-        change[bill] = amount // bill
-        amount = amount % bill
+        change[bill] = amount // bill  # Número de billetes
+        amount = amount % bill  # Resto de la cantidad
 
+# Calcular el desglose en monedas
 for coin in coins:
     if amount >= coin:
-        change[coin] = amount // coin
-        amount = amount % coin
+        change[coin] = amount // coin  # Número de monedas
+        amount = amount % coin  # Resto de la cantidad
 
-print(change)
+# Imprimir el resultado
+print("Desglose de la cantidad:")
+for denomination, count in change.items():
+    if denomination >= 5:  # Para billetes
+        print(f"- {count} billete(s) de {denomination} euros.")
+    else:  # Para monedas
+        print(f"- {count} moneda(s) de {denomination} euros.")

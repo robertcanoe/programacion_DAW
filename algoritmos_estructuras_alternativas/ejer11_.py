@@ -10,13 +10,12 @@ Autor: Roberto Cano Estévez
 
 Fecha: 19/10/2024
 """
-print("Este programa te pide dos números y te muestra su division")
-print("------------------------------------------------------------")
+# Leer las dimensiones de los lados del triángulo
+side_a = float(input("Introduce la longitud del lado A: "))
+side_b = float(input("Introduce la longitud del lado B: "))
+side_c = float(input("Introduce la longitud del lado C: "))
 
-side_a = 3
-side_b = 4
-side_c = 5
-
+# tipo de triángulo
 if (side_a**2 + side_b**2 == side_c**2) or (side_a**2 + side_c**2 == side_b**2) or (side_b**2 + side_c**2 == side_a**2):
     triangle_type = "Triángulo Rectángulo"
 elif side_a == side_b == side_c:
@@ -26,4 +25,4 @@ elif side_a == side_b or side_b == side_c or side_a == side_c:
 else:
     triangle_type = "Triángulo Escaleno"
 
-print(triangle_type)
+print(f"El tipo de triángulo es: {triangle_type}")

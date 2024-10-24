@@ -14,12 +14,14 @@ Autor: Roberto Cano Estévez
 Fecha: 19/10/2024
 """
 
-die_number = 3
+print("programa que solicita al usuario que introduzca un número del dado")
+print("------------------------------------------------------------------")
+die_number = int(input("Elige un número (1-6): "))
 opposite_faces = {1: "seis", 2: "cinco", 3: "cuatro", 4: "tres", 5: "dos", 6: "uno"}
 
+# Verificar si el número está en el rango válido
 if 1 <= die_number <= 6:
     result = opposite_faces[die_number]
+    print(f"En la cara opuesta está el \"{result}\".")
 else:
-    result = "ERROR: número incorrecto"
-
-print(result)
+    print("ERROR: número incorrecto.")
