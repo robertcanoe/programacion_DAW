@@ -6,4 +6,4 @@
 
 2. [Algoritmos de estructuras alternativas en Python](algoritmos_estructuras_alternativas/)
 
-3. [Realiza estos ejercicios de estructuras repetitivas en Python](https://) 
+3. [Realiza estos ejercicios de estructuras repetitivas en Python](ejercicios_estructuras_repetitivas/)
