@@ -7,3 +7,5 @@
 2. [Algoritmos de estructuras alternativas en Python](algoritmos_estructuras_alternativas/)
 
 3. [Realiza estos ejercicios de estructuras repetitivas en Python](ejercicios_estructuras_repetitivas/)
+
+4. [Ejercicios de cadenas de caracteres](ejercicios_cadenas_de_caracteres/)
