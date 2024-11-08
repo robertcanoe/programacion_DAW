@@ -10,7 +10,7 @@ print("-------------------------------------------------------------------------
 continue_program = True
 while continue_program:
     user_string = input("Enter a string: ")
-    translation_table = str.maketrans("aeio", "4310")
+    translation_table = str.maketrans("a e i o", "4 3 1 0")
     translated_string = user_string.translate(translation_table)
 
     print("Translated string:", translated_string)

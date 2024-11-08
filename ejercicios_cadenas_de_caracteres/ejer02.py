@@ -1,5 +1,5 @@
 """
-Crea un programa que verifique si una cadena ingresada por el usuario es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda, ignorando espacios, signos de puntuación y mayúsculas).
+"Create a program that verifies if a string entered by the user is a palindrome (reads the same left to right as right to left, ignoring spaces, punctuation, and capitalization)."
 
 Author: Roberto Cano Estévez
 Date: 6/11/2024

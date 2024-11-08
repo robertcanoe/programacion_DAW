@@ -9,18 +9,12 @@ print("This program checks a string and tells the user if it is a palindrome or 
 print("-----------------------------------------------------------------------------")
 
 try:
-    text = input("Enter a string: ")
+    text = input("Enter a string: ").lower()
 
-    # Convert the string to lowercase
-    text = text.lower()
-
-    # Remove non-alphanumeric characters
     processed_text = ''.join(char for char in text if char.isalnum())
 
-    # Check if it is a palindrome
     is_palindrome = processed_text == processed_text[::-1]
 
-    # Display the result
     if is_palindrome:
         print("It's a palindrome")
     else:
@@ -31,6 +25,3 @@ except ValueError:
 
 except KeyboardInterrupt:
     print("\nProcess interrupted by the user.")
-
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
