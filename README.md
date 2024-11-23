@@ -9,3 +9,5 @@
 3. [Realiza estos ejercicios de estructuras repetitivas en Python](ejercicios_estructuras_repetitivas/)
 
 4. [Ejercicios de cadenas de caracteres](ejercicios_cadenas_de_caracteres/)
+
+5. [Haz en Python los siguientes ejercicios de arrays](ejercicios_arrays/)
