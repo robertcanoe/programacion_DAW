@@ -10,4 +10,4 @@
 
 4. [Ejercicios de cadenas de caracteres](ejercicios_cadenas_de_caracteres/)
 
-5. [Haz en Python los siguientes ejercicios de arrays](ejercicios_arrays/)
+5. [Ejercicios de arrays](ejercicios_arrays/)

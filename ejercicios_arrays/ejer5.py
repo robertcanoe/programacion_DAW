@@ -7,6 +7,7 @@ Fecha: 22/11/2024
 """
 
 print("Este programa pide la temperatura media que ha hecho en cada mes de un determinado y muestra un diagrama con esos datos.")
+print("------------------------------------------------------------------------------------------------------------------------")
 
 months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
 "Octubre", "Noviembre", "Diciembre"]

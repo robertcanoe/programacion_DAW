@@ -12,7 +12,7 @@ squared = []
 cube = []
 
 print("Este programa genera 20 números aleatorios entre 0 y 100. Luego, calcula y muestra el cuadrado y el cubo de cada uno de estos números.")
-
+print("--------------------------------------------------------------------------------------------------------------------------------------")
 for i in range(20):
     value = randint(0, 100)
     number.append(value)

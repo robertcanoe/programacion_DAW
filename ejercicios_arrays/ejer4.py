@@ -7,6 +7,7 @@ Fecha: 22/11/2024
 """
 number = []
 print("Este programa pide 10 números y luego muestra el máximo y el mínimo")
+print("-------------------------------------------------------------------")
 
 try:
     for i in range(10):
