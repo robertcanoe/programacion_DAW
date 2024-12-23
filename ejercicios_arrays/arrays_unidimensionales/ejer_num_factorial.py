@@ -8,7 +8,7 @@ La fórmula para el coeficiente binomial es:
 Donde:
 - n! es el factorial de n
 - m! es el factorial de m
-- (n - m)! es el factorial de (n - m)
+- (n - m)! es el factorial de (n - m)xºº
 
 Autor: Roberto Cano Estévez
 
@@ -19,8 +19,8 @@ print("Este programa calcula el coeficiente binomial en base a los números dado
 print("----------------------------------------------------------------------------------")
 while True:
     try:
-        n = int(input("Pon el valor de n: "))
-        m = int(input("Pon el valor de m: "))
+        n = int(input("Ingrese el valor de n: "))
+        m = int(input("Ingrese el valor de m: "))
 
         if n >= m:
             break
@@ -44,13 +44,8 @@ for i in range(1, n - m + 1):
 
 binomial_coefficient = n_fact // (m_fact * nm_fact)
 
-# Mostrar los resultados
 print(f"El factorial de n ({n}) es: {n_fact}")
 print(f"El factorial de m ({m}) es: {m_fact}")
 print(f"El factorial de (n - m) ({n} - {m}) es: {nm_fact}")
 print(f"El coeficiente binomial C({n}, {m}) es: {binomial_coefficient}")
-
-
-
-
 

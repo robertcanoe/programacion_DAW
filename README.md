@@ -11,3 +11,5 @@
 4. [Ejercicios de cadenas de caracteres](ejercicios_cadenas_de_caracteres/)
 
 5. [Ejercicios de arrays](ejercicios_arrays/)
+
+6. [Ejercios de funciones](ejercicios_funciones/)

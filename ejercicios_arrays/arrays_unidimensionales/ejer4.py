@@ -5,17 +5,17 @@ Autor: Roberto Cano Estévez
 
 Fecha: 22/11/2024
 """
+from arrays_bidimensionales.utils_int import request_int
+
 number = []
 print("Este programa pide 10 números y luego muestra el máximo y el mínimo")
 print("-------------------------------------------------------------------")
 
-try:
-    for i in range(10):
-        values = int(input(f"Escribe un número {i+1}: "))
-        number.append(values)
-except ValueError:
-    print("Error: Por favor, introduce un número")
-    exit(1)
+
+for i in range(10):
+    values = request_int(f"Ingrese el número {i+1}: ")
+    number.append(values)
+
 
 number_max = max(number)
 number_min = min(number)

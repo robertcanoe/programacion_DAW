@@ -14,7 +14,6 @@ Autor: Roberto Cano Estévez
 
 Fecha: 22/11/2024
 """
-Fecha: 22/11/2024
 import math
 
 print("Este programa calcula el número factorial en base a los números dados de m y n")

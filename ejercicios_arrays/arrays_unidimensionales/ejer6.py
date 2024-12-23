@@ -12,14 +12,15 @@ print("-------------------------------------------------------------------------
 l = []
 l_pair = []
 l_odd = []
-for i in range(20):
-    num = randint(0, 100)
-    l.append(num)
 
-    if num % 2 == 0:
-        l_pair.append(num)
+for i in range(20):
+    NUM = randint(0, 100)
+    l.append(NUM)
+
+    if NUM % 2 == 0:
+        l_pair.append(NUM)
     else:
-        l_odd.append(num)
+        l_odd.append(NUM)
 
 l = l_pair + l_odd
 
