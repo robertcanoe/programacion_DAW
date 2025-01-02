@@ -12,18 +12,30 @@ Si a = [8, 9, 0, 3] y b = [1], mezcla(a, b) devuelve [8, 1, 9, 0, 3]
 Si a = [ ] y b = [1, 2, 3], mezcla(a, b) devuelve [1, 2, 3]
 """
 
-arra_mezcl = []
+def merge(list1, list2):
+    result = []
+    min_length = min(len(list1), len(list2))
+    
+    for i in range(min_length):
+        result.append(list1[i])
+        result.append(list2[i])
+    
+    result.extend(list1[min_length:])
+    result.extend(list2[min_length:])
+    
+    return result
 
-def mezcla():
-    while True:
-
-        list1 = int(input("Ingrese los números de tu lista 1 (0 para salir): "))
-        list2 = int(input("Ingrese los números de tu lista 2 (0 para salir): "))
-
-        if list1 or list2 == 0:
-            exit(0)
-#TODO tengo que hacer un while True para cada lista
-
+def main():
+    list1 = input("Enter the numbers for list 1 separated by commas (e.j., 1,2,3): ")
+    list2 = input("Enter the numbers for list 2 separated by commas (e.j., 4,5,6): ")
+    
+    list1 = [int(x) for x in list1.split(",")] if list1 else []
+    list2 = [int(x) for x in list2.split(",")] if list2 else []
+    
+    result = merge(list1, list2)
+    
+    print("The merged list is:", result)
 
 if __name__ == "__main__":
-    mezcla()
+    main()
+
