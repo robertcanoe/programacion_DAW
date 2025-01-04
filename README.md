@@ -13,3 +13,5 @@
 5. [Ejercicios de arrays](ejercicios_arrays/)
 
 6. [Ejercios de funciones](ejercicios_funciones/)
+
+7. [Ejercicios de POO (divididos en varias tandas)](ejercicios_POO/README.md)
