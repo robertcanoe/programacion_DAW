@@ -2,6 +2,8 @@
 
 **Este repositorio es de todas mis tareas de el módulo programación de primero de DAW**
 
+0. [Examenes del curso](examenes_py/README.md)
+
 1. [Programas (secuenciales) en Python](ejercicios_programas_secuenciales/)
 
 2. [Algoritmos de estructuras alternativas en Python](algoritmos_estructuras_alternativas/)
