@@ -4,25 +4,45 @@
 from point import Point
 
 class Rectangle:
-    
+  
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
-
+        self.update_dimensions()
+    
     @property
     
     def area(self):
-        width = abs(self.p2.x - self.p1.x)
-        height = abs(self.p2.y - self.p1.y)
-        return width * height
+        return self._width * self._height
 
     @property
     
     def perimeter(self):
-        return 2 * (abs(self.p2.x - self.p1.x) + abs(self.p2.y - self.p1.y))
+        return 2 * (self._width + self._height)
     
+    @property
 
-    def peremiter(self):
-        width = abs(self.p2.x - self.p1.x)
-        height = abs(self.p2.y - self.p1.y)
-        return 2 * width + height
+    def p1(self):
+        return self._p1
+    
+    @p1.setter
+    
+    def p1(self, value):
+        self._p1 = value
+        self.update_dimensions()
+    
+    @property
+
+    def p2(self):
+        return self._p2
+    
+    @p2.setter
+
+    def p2(self, value):
+        self._p2 = value
+        self.update_dimensions()
+
+    def update_dimensions(self):
+
+        self._width = abs(self._p2.x - self._p1.x)
+        self._height = abs(self._p2.y - self._p1.y)

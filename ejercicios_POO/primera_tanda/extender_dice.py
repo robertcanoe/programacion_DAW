@@ -20,7 +20,7 @@ class ExtendedDice:
         if 1 <= value <= self.num_faces:
             self.value = value
         else:
-            raise ValueError("The value must be within the range of the dice faces.")
+            raise ValueError("The value of the top face must be between 1 and the number of faces")
 
     def roll(self):
         self.value = random.randint(1, self.num_faces)
