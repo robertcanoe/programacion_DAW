@@ -4,15 +4,18 @@
 import random
 
 class ExtendedDice:
+    
     def __init__(self, top_face=None, num_faces=6):
         self.num_faces = num_faces
         self.value = top_face if top_face is not None else random.randint(1, num_faces)
 
     @property
+    
     def top_face(self):
         return self.value
 
     @top_face.setter
+    
     def top_face(self, value):
         if 1 <= value <= self.num_faces:
             self.value = value
