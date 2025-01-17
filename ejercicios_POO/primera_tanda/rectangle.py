@@ -6,8 +6,8 @@ from point import Point
 class Rectangle:
   
     def __init__(self, p1, p2):
-        self.p1 = p1
-        self.p2 = p2
+        self._p1 = p1
+        self._p2 = p2
         self.update_dimensions()
     
     @property
