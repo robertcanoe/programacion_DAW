@@ -8,120 +8,125 @@ Ejemplos de creación:
     t1 = Duration(1, 20, 30)  # almacenará 1 hora, 20 minutos y 30 segundos.
     t2 = Duration(2, 75, -10)  # almacenará 3 horas, 14 minutos y 50 segundos.
     t3 = Duration(t2)  # almacenará las horas, minutos y segundos del objeto t2.
-
-Requisitos de la clase:
-
-1. **Inicialización**
-    - Debe permitir crear un objeto con horas, minutos y segundos.
-    - Debe normalizar valores mayores a 59 en minutos y segundos.
-    - Debe permitir crear un objeto a partir de otro objeto `Duration`.
-
-2. **Propiedades y métodos:**
-    - Implementar getters y setters mediante propiedades para:
-      - `hours`: obtener y modificar las horas.
-      - `minutes`: obtener y modificar los minutos (ajustando horas si es necesario).
-      - `seconds`: obtener y modificar los segundos (ajustando minutos y horas si es necesario).
-    
-3. **Operaciones sobrecargadas:**
-    - **Suma de objetos (`+`)**: el resultado será un nuevo objeto `Duration`.
-    - **Resta de objetos (`-`)**: el resultado será un nuevo objeto `Duration`, asegurando que no haya valores negativos.
-
-4. **Modificación del objeto actual:**
-    - Métodos para sumar/restar horas, minutos y segundos:
-      - `add_hours(h)`
-      - `add_minutes(m)`
-      - `add_seconds(s)`
-      - `subtract_hours(h)`
-      - `subtract_minutes(m)`
-      - `subtract_seconds(s)`
-    - Se deben ajustar los valores al modificar minutos o segundos.
-    
-5. **Representación en cadena:**
-    - Método para devolver una cadena con el tiempo almacenado en formato:
-      "10h 35m 5s"
-      cuando la duración sea de 10 horas, 35 minutos y 5 segundos.
-
 """
 
+from typeguard import typechecked
+from typing import Union
 
-from dataclasses import dataclass
-from typing import Protocol
-
-class DurationProtocol(Protocol):
-    hours: int
-    minutes: int
-    seconds: int
-
-@dataclass
+@typechecked
 class Duration:
-    _hours: int = 0
-    _minutes: int = 0
-    _seconds: int = 0
-
-    def __post_init__(self):
+    def __init__(self, hours: Union[int, "Duration"] = 0, minutes: int = 0, seconds: int = 0) -> None:
+        if isinstance(hours, Duration):
+            self.__hours = hours.hours
+            self.__minutes = hours.minutes
+            self.__seconds = hours.seconds
+        else:
+            self.__hours = hours
+            self.__minutes = minutes
+            self.__seconds = seconds
         self._normalize()
 
-    def _normalize(self):
-        total_seconds = self._hours * 3600 + self._minutes * 60 + self._seconds
-        self._hours = total_seconds // 3600
-        self._minutes = (total_seconds % 3600) // 60
-        self._seconds = total_seconds % 60
+    def _normalize(self) -> None:
+        total_seconds = self.__hours * 3600 + self.__minutes * 60 + self.__seconds
+        self.__hours = total_seconds // 3600
+        self.__minutes = (total_seconds % 3600) // 60
+        self.__seconds = total_seconds % 60
 
     @property
     def hours(self) -> int:
-        return self._hours
+        return self.__hours
 
     @hours.setter
-    def hours(self, value: int):
-        self._hours = max(0, value)
+    @typechecked
+    def hours(self, value: int) -> None:
+        self.__hours = max(0, value)
 
     @property
     def minutes(self) -> int:
-        return self._minutes
+        return self.__minutes
 
     @minutes.setter
-    def minutes(self, value: int):
-        self._minutes = value
+    @typechecked
+    def minutes(self, value: int) -> None:
+        self.__minutes = value
         self._normalize()
 
     @property
     def seconds(self) -> int:
-        return self._seconds
+        return self.__seconds
 
     @seconds.setter
-    def seconds(self, value: int):
-        self._seconds = value
+    @typechecked
+    def seconds(self, value: int) -> None:
+        self.__seconds = value
         self._normalize()
 
     def __str__(self) -> str:
-        return f"{self._hours}h {self._minutes}m {self._seconds}s"
+        return f"{self.__hours}h {self.__minutes}m {self.__seconds}s"
 
-    def __add__(self, other: DurationProtocol) -> "Duration":
-        return Duration(self._hours + other.hours, self._minutes + other.minutes, self._seconds + other.seconds)
+    @typechecked
+    def __add__(self, other: "Duration") -> "Duration":
+        return Duration(self.__hours + other.hours, self.__minutes + other.minutes, self.__seconds + other.seconds)
 
-    def __sub__(self, other: DurationProtocol) -> "Duration":
-        total_seconds = (self._hours * 3600 + self._minutes * 60 + self._seconds) - \
-                        (other.hours * 3600 + other.minutes * 60 + other.seconds)
+    @typechecked
+    def __sub__(self, other: "Duration") -> "Duration":
+        total_seconds = (self.__hours * 3600 + self.__minutes * 60 + self.__seconds) - \
+                       (other.hours * 3600 + other.minutes * 60 + other.seconds)
         return Duration(0, 0, max(0, total_seconds))
 
-    def add_hours(self, h: int):
-        self._hours += h
+    @typechecked
+    def add_hours(self, h: int) -> None:
+        self.__hours += h
 
-    def add_minutes(self, m: int):
-        self._minutes += m
+    @typechecked
+    def add_minutes(self, m: int) -> None:
+        self.__minutes += m
         self._normalize()
 
-    def add_seconds(self, s: int):
-        self._seconds += s
+    @typechecked
+    def add_seconds(self, s: int) -> None:
+        self.__seconds += s
         self._normalize()
 
-    def subtract_hours(self, h: int):
-        self._hours = max(0, self._hours - h)
+    @typechecked
+    def subtract_hours(self, h: int) -> None:
+        self.__hours = max(0, self.__hours - h)
 
-    def subtract_minutes(self, m: int):
-        total_seconds = self._hours * 3600 + self._minutes * 60 + self._seconds - m * 60
+    @typechecked
+    def subtract_minutes(self, m: int) -> None:
+        total_seconds = self.__hours * 3600 + self.__minutes * 60 + self.__seconds - m * 60
         self.__init__(0, 0, max(0, total_seconds))
 
-    def subtract_seconds(self, s: int):
-        total_seconds = self._hours * 3600 + self._minutes * 60 + self._seconds - s
+    @typechecked
+    def subtract_seconds(self, s: int) -> None:
+        total_seconds = self.__hours * 3600 + self.__minutes * 60 + self.__seconds - s
         self.__init__(0, 0, max(0, total_seconds))
+
+# Tests
+if __name__ == "__main__":
+    # Test 1: Creación y normalización
+    t1 = Duration(1, 20, 30)
+    print(f"Test 1 - Creación básica: {t1}")  
+
+    t2 = Duration(2, 75, -10)
+    print(f"Test 2 - Normalización: {t2}")  
+
+    # Test 3: Copia de otro Duration
+    t3 = Duration(t2)
+    print(f"Test 3 - Copia: {t3}")  
+
+    # Test 4: Suma
+    t4 = t1 + t2
+    print(f"Test 4 - Suma: {t4}")  
+
+    # Test 5: Resta
+    t5 = t2 - t1
+    print(f"Test 5 - Resta: {t5}") 
+
+    # Test 6: Modificación
+    t6 = Duration(5, 30, 45)
+    t6.add_minutes(90)
+    print(f"Test 6 - Add minutes: {t6}")  
+
+    t6.subtract_hours(8)
+    print(f"Test 7 - Subtract hours: {t6}")

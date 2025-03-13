@@ -17,7 +17,6 @@ La pila y la cola permitirán estas operaciones:
    * Leer el elemento frontal de la cola, es decir, el primer elemento que entró, sin retirarlo (front).
 """
 from typeguard import typechecked
-import os
 
 class Stack:
     def __init__(self, initial_values: list[int] | None = None):
@@ -27,6 +26,9 @@ class Stack:
                 raise ValueError("Todos los valores iniciales deben ser enteros")
             self.__items.extend(initial_values)
 
+    def __str__(self) -> str:
+        return f"Stack({self.__items})"
+    
     @property
     @typechecked
     def items(self) -> list[int]:
