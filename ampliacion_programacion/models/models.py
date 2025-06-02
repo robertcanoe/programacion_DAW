@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from decimal import Decimal
 from typing import Optional
 
 @dataclass
@@ -11,16 +12,16 @@ class Cliente:
 
 @dataclass
 class Cuenta:
-    numero: Optional[int]
+    numero: int
     dni_cliente: str
     activa: bool = True
+    saldo: Decimal = Decimal('0.00')
 
 @dataclass
 class Movimiento:
-    numero_cuenta: int
-    importe: float
-    fecha_hora: datetime
-    tipo: str
-    numero_cuenta_transferencia: Optional[int]
+    id: Optional[int]
+    cuenta_numero: int
+    fecha: datetime
     concepto: str
-    id: Optional[int] = None
+    importe: Decimal
+    cuenta_transferencia: Optional[int]
