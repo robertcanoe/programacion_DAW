@@ -6,7 +6,7 @@ load_dotenv()
 
 def create_database():
     try:
-        # Conectar al servidor MySQL sin seleccionar una base de datos
+        # conectar al servidor MySQL sin seleccionar una base de datos
         connection = mysql.connector.connect(
             host=os.getenv('DB_HOST'),
             user=os.getenv('DB_USER'),
