@@ -1,5 +1,7 @@
 from typing import List, Optional
+from decimal import Decimal
 from datetime import datetime
+from mysql.connector import Error
 from config.db_config import DatabaseConnection
 from models.models import Cliente, Cuenta, Movimiento
 from dao.dao_interfaces import ClienteDAO, CuentaDAO, MovimientoDAO
@@ -7,7 +9,7 @@ from dao.dao_interfaces import ClienteDAO, CuentaDAO, MovimientoDAO
 class ClienteDAOImpl(ClienteDAO):
     def __init__(self):
         self.db = DatabaseConnection()
-
+        
     def crear(self, cliente: Cliente) -> bool:
         try:
             cursor = self.db.get_cursor()
@@ -70,6 +72,34 @@ class ClienteDAOImpl(ClienteDAO):
 class CuentaDAOImpl(CuentaDAO):
     def __init__(self):
         self.db = DatabaseConnection()
+
+    def get_all(self) -> List[Cuenta]:
+        """Obtiene todas las cuentas registradas"""
+        try:
+            cursor = self.db.get_cursor()
+            cursor.execute("""
+                SELECT c.numero, c.dni_cliente, c.activa, 
+                       COALESCE(SUM(CASE WHEN m.tipo = 'I' THEN m.importe 
+                                         WHEN m.tipo = 'S' THEN -m.importe 
+                                         ELSE 0 END), 0) as saldo
+                FROM cuentas c
+                LEFT JOIN movimientos m ON c.numero = m.numero_cuenta
+                GROUP BY c.numero, c.dni_cliente, c.activa
+            """)
+            rows = cursor.fetchall()
+            cuentas = []
+            for row in rows:
+                cuenta = Cuenta(
+                    numero=row[0],
+                    dni_cliente=row[1],
+                    activa=bool(row[2]),
+                    saldo=Decimal(str(row[3]))
+                )
+                cuentas.append(cuenta)
+            return cuentas
+        except Exception as e:
+            print(f"Error al obtener las cuentas: {e}")
+            return []
 
     def crear(self, cuenta: Cuenta) -> int:
         try:
