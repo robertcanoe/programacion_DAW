@@ -26,6 +26,11 @@ class ClienteDAO(ABC):
 
 class CuentaDAO(ABC):
     @abstractmethod
+    def get_all(self) -> List[Cuenta]:
+        """Obtiene todas las cuentas registradas"""
+        pass
+
+    @abstractmethod
     def crear(self, cuenta: Cuenta) -> int:
         pass
 
