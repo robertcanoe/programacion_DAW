@@ -1,35 +1,48 @@
 import os
+from typing import Optional
 from dotenv import load_dotenv
-import mysql.connector
-from mysql.connector import Error
-
-load_dotenv()
+from mysql.connector import connect, Error
 
 class DatabaseConnection:
     _instance = None
+    connection = None
 
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(DatabaseConnection, cls).__new__(cls)
-            cls._instance.connection = None
+            cls._instance._connect()
         return cls._instance
 
-    def connect(self):
-        if not self.connection:
-            try:
-                self.connection = mysql.connector.connect(
-                    host=os.getenv('DB_HOST'),
-                    user=os.getenv('DB_USER'),
-                    password=os.getenv('DB_PASSWORD'),
-                    database=os.getenv('DB_NAME')
-                )
-            except Error as e:
-                print(f"Error connecting to MySQL Database: {e}")
-                raise
-        return self.connection
+    def _connect(self):
+        load_dotenv()
+        try:
+            self.connection = connect(
+                host=os.getenv('DB_HOST'),
+                user=os.getenv('DB_USER'),
+                password=os.getenv('DB_PASSWORD'),
+                database=os.getenv('DB_NAME')
+            )
+            self.connection.autocommit = True
+        except Error as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            raise
 
     def get_cursor(self):
-        return self.connect().cursor(dictionary=True)
+        try:
+            if not self.connection or not self.connection.is_connected():
+                self._connect()
+            return self.connection.cursor()
+        except Error as e:
+            print(f"Error al obtener el cursor: {e}")
+            raise
+
+    def commit(self):
+        if self.connection:
+            self.connection.commit()
+
+    def rollback(self):
+        if self.connection:
+            self.connection.rollback()
 
     def close(self):
         if self.connection and self.connection.is_connected():
